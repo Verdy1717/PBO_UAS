@@ -3,15 +3,10 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\KameraResource\Pages;
-use App\Filament\Admin\Resources\KameraResource\RelationManagers;
 use App\Models\Kamera;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class KameraResource extends Resource
 {
@@ -19,12 +14,17 @@ class KameraResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // ✅ Tambahkan ini untuk ubah label sidebar
+    public static function getNavigationLabel(): string
+    {
+        return 'Kamera';
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            //
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -48,9 +48,7 @@ class KameraResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

@@ -10,9 +10,9 @@ return new class extends Migration {
         Schema::create('pelanggans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('email')->nullable(); // ← Tambahkan kolom email
-            $table->string('nomor_hp');
-            $table->text('alamat');
+            $table->string('email')->unique();
+            $table->string('telepon')->nullable(); // ⬅ tambahkan ini
+            $table->text('alamat')->nullable();
             $table->timestamps();
         });
     }
