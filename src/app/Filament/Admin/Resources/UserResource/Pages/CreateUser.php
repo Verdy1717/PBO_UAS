@@ -4,13 +4,22 @@ namespace App\Filament\Admin\Resources\UserResource\Pages;
 
 use App\Filament\Admin\Resources\UserResource;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Forms;
+use Filament\Forms\Form;
 
 class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
-    protected function getRedirectUrl(): string
+    public function form(Form $form): Form
     {
-        return $this->getResource()::getUrl('index');
+        return $form->schema([
+            Forms\Components\TextInput::make('name')->required(),
+            Forms\Components\TextInput::make('email')->email()->required(),
+            Forms\Components\TextInput::make('password')
+                ->password()
+                ->required()
+                ->minLength(6),
+        ]);
     }
 }

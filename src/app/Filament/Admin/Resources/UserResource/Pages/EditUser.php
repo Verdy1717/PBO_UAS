@@ -3,22 +3,19 @@
 namespace App\Filament\Admin\Resources\UserResource\Pages;
 
 use App\Filament\Admin\Resources\UserResource;
-use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Forms;
+use Filament\Forms\Form;
 
 class EditUser extends EditRecord
 {
     protected static string $resource = UserResource::class;
 
-    protected function getRedirectUrl(): string
+    public function form(Form $form): Form
     {
-        return $this->getResource()::getUrl('index');
-    }
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        return $form->schema([
+            Forms\Components\TextInput::make('name')->required(),
+            Forms\Components\TextInput::make('email')->email()->required(),
+        ]);
     }
 }
